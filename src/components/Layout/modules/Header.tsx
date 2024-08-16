@@ -40,7 +40,7 @@ const Header: FunctionComponent<HeaderProps> = ({
   locale,
   header,
 }): JSX.Element => {
-  return !header && window.innerWidth < 400 ? (
+  return !header && typeof window !== "undefined" && window.innerWidth < 400 ? (
     <div
       className={`fixed w-full h-fit flex p-2 top-0 z-30 bg-offBlack justify-center items-center`}
     >
@@ -90,7 +90,7 @@ const Header: FunctionComponent<HeaderProps> = ({
             draggable={false}
           />
         </div>
-        {header && window.innerWidth < 400 && (
+        {header && typeof window !== "undefined" && window.innerWidth < 400 && (
           <div
             className="relative w-fit h-fit flex items-center justify-center cursor-pointer active:scale-95"
             onClick={() => dispatch(setHeader(false))}

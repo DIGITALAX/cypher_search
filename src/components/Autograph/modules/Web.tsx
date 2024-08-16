@@ -482,9 +482,15 @@ const Web: FunctionComponent<WebProps> = ({
                     <div
                       style={{
                         height:
-                          window?.innerWidth < 648 ? item.sHeight : item.height,
+                          typeof window !== "undefined" &&
+                          window?.innerWidth < 648
+                            ? item.sHeight
+                            : item.height,
                         width:
-                          window?.innerWidth < 648 ? item.sWidth : item.width,
+                          typeof window !== "undefined" &&
+                          window?.innerWidth < 648
+                            ? item.sWidth
+                            : item.width,
                       }}
                       className={`relative flex items-center justify-center cursor-pointer active:scale-95 ${
                         item.type === screenDisplay && "mix-blend-luminosity"

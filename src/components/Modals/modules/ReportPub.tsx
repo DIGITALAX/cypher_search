@@ -123,7 +123,7 @@ const ReportPub: FunctionComponent<ReportPubProps> = ({
                         {reportLoading ? (
                           <AiOutlineLoading size={15} color="white" />
                         ) : (
-                          item?.replaceAll("_", " ")
+                          item?.replaceAll(/_/g, " ")
                         )}
                       </div>
                     </div>

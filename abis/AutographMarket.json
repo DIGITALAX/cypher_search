@@ -1,0 +1,202 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      { "name": "_symbol", "type": "string", "internalType": "string" },
+      { "name": "_name", "type": "string", "internalType": "string" },
+      {
+        "name": "_autographAccessControl",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "_printSplitsData",
+        "type": "address",
+        "internalType": "address"
+      },
+      { "name": "_autographNFT", "type": "address", "internalType": "address" }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "autographAccessControl",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract AutographAccessControl"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "autographCollection",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract AutographCollection"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "autographData",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract AutographData"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "autographNFT",
+    "inputs": [],
+    "outputs": [
+      { "name": "", "type": "address", "internalType": "contract AutographNFT" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "buyTokenAction",
+    "inputs": [
+      {
+        "name": "_encryptedFulfillment",
+        "type": "string",
+        "internalType": "string"
+      },
+      { "name": "_buyer", "type": "address", "internalType": "address" },
+      { "name": "_currency", "type": "address", "internalType": "address" },
+      { "name": "_collectionId", "type": "uint256", "internalType": "uint256" },
+      { "name": "_quantity", "type": "uint8", "internalType": "uint8" },
+      {
+        "name": "_type",
+        "type": "uint8",
+        "internalType": "enum AutographLibrary.AutographType"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "buyTokens",
+    "inputs": [
+      {
+        "name": "_currencies",
+        "type": "address[]",
+        "internalType": "address[]"
+      },
+      {
+        "name": "_collectionIds",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      },
+      {
+        "name": "_maxAmount",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      },
+      { "name": "_quantities", "type": "uint8[]", "internalType": "uint8[]" },
+      {
+        "name": "_types",
+        "type": "uint8[]",
+        "internalType": "enum AutographLibrary.AutographType[]"
+      },
+      {
+        "name": "_encryptedFulfillment",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "name",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "string", "internalType": "string" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "printSplitsData",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract PrintSplitsData"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "setAutographCollection",
+    "inputs": [
+      {
+        "name": "_autographCollection",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setAutographData",
+    "inputs": [
+      { "name": "_autographData", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setAutographNFT",
+    "inputs": [
+      { "name": "_autographNFT", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setPrintSplitsData",
+    "inputs": [
+      {
+        "name": "_printSplitsData",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "symbol",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "string", "internalType": "string" }],
+    "stateMutability": "view"
+  },
+  { "type": "error", "name": "CurrencyNotWhitelisted", "inputs": [] },
+  { "type": "error", "name": "ExceedAmount", "inputs": [] },
+  { "type": "error", "name": "InvalidAddress", "inputs": [] },
+  { "type": "error", "name": "InvalidAmounts", "inputs": [] },
+  { "type": "error", "name": "InvalidType", "inputs": [] },
+  { "type": "error", "name": "NoMixFound", "inputs": [] }
+]

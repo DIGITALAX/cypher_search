@@ -1,7 +1,12 @@
 import { OracleData } from "@/components/Checkout/types/checkout.types";
 import { CartItem } from "@/components/Common/types/common.types";
 import { FilterValues, Quest } from "@/components/Search/types/search.types";
-import { Creation, Publication } from "@/components/Tiles/types/tiles.types";
+import {
+  Catalogo,
+  Coleccion,
+  Creation,
+  Publication,
+} from "@/components/Tiles/types/tiles.types";
 import { NextRouter } from "next/router";
 import { ChangeEvent, SetStateAction } from "react";
 import { AnyAction, Dispatch } from "redux";
@@ -12,13 +17,25 @@ import {
   Quote,
   Mirror,
 } from "../../../../graphql/generated";
-import { MakePostComment } from "@/components/Autograph/types/autograph.types";
+import {
+  Details,
+  MakePostComment,
+} from "@/components/Autograph/types/autograph.types";
 import { PostCollectGifState } from "../../../../redux/reducers/postCollectGifSlice";
 import { AllSearchItemsState } from "../../../../redux/reducers/searchItemsSlice";
 
 export type SwitchTypeProps = {
   itemData: Publication;
+  address: `0x${string}` | undefined;
   isApprovedSpend: boolean;
+  details: Details;
+  aprobado: boolean;
+  compraCargando: boolean;
+  manejarCompra: () => Promise<void>;
+  aprobarGastos: () => Promise<void>;
+  setDetails: (e: SetStateAction<Details>) => void;
+  openDropdown: boolean;
+  setOpenDropdown: (e: SetStateAction<boolean>) => void;
   type: string;
   hoverPrompt: boolean;
   setHoverPrompt: (e: SetStateAction<boolean>) => void;
@@ -56,10 +73,10 @@ export type SwitchTypeProps = {
   mentionProfilesMain: Profile[];
   setMentionProfilesMain: (e: SetStateAction<Profile[]>) => void;
   setProfilesOpenMain: (e: SetStateAction<boolean[]>) => void;
-  instantLoading: boolean;
   cartItems: CartItem[];
-  dispatch: Dispatch<AnyAction>;
   oracleData: OracleData[];
+  instantLoading: boolean;
+  dispatch: Dispatch<AnyAction>;
   purchaseDetails: PurchaseDetails;
   setPurchaseDetails: (e: SetStateAction<PurchaseDetails>) => void;
   approveSpend: () => Promise<void>;
@@ -553,4 +570,41 @@ export type KinoraProps = {
   purchaseDetails: PurchaseDetails;
   setPurchaseDetails: (e: SetStateAction<PurchaseDetails>) => void;
   t: (key: string | number) => string;
+};
+
+export type AutografoProps = {
+  oracleData: OracleData[];
+  router: NextRouter;
+  instantLoading: boolean;
+  isApprovedSpend: boolean;
+  purchaseDetails: PurchaseDetails;
+  setPurchaseDetails: (e: SetStateAction<PurchaseDetails>) => void;
+  approveSpend: () => Promise<void>;
+  itemData: Coleccion;
+  handleInstantPurchase: () => Promise<void>;
+  t: (key: string | number) => string;
+  address: `0x${string}` | undefined;
+  details: Details;
+  setDetails: (e: SetStateAction<Details>) => void;
+  openDropdown: boolean;
+  setOpenDropdown: (e: SetStateAction<boolean>) => void;
+  dispatch: Dispatch;
+  allSearchItems: AllSearchItemsState;
+};
+
+export type CatalogoProps = {
+  oracleData: OracleData[];
+  instantLoading: boolean;
+  isApprovedSpend: boolean;
+  purchaseDetails: PurchaseDetails;
+  setPurchaseDetails: (e: SetStateAction<PurchaseDetails>) => void;
+  approveSpend: () => Promise<void>;
+  itemData: Catalogo;
+  handleInstantPurchase: () => Promise<void>;
+  t: (key: string | number) => string;
+  address: `0x${string}` | undefined;
+  details: Details;
+  setDetails: (e: SetStateAction<Details>) => void;
+  openDropdown: boolean;
+  setOpenDropdown: (e: SetStateAction<boolean>) => void;
 };

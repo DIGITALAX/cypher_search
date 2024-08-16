@@ -80,6 +80,11 @@ export const ACCEPTED_TOKENS: string[][] = [
     "MONA",
     "0x6968105460f67c3bf751be7c15f92f5286fd0ce5",
   ],
+  [
+    "Qmefk5XV1hNzTxmyqffaTH5qnTW3Fr6A1w12MWVeSFosF4",
+    "BONSAI",
+    "0x3d2bd0e15829aa5c362a4144fdf4a1112fa29b5c",
+  ],
 ];
 
 export const ACCEPTED_TOKENS_MUMBAI: string[][] = [
@@ -898,3 +903,22 @@ export const FILTER_SHUFFLE: Object[] = [
     printType: [],
   },
 ];
+
+export const numberToAutograph: { [key in number]: string } = {
+  [0]: "NFT",
+  [1]: "Hoodie",
+  [2]: "Shirt",
+  [3]: "Catalog",
+  [4]: "Mix",
+};
+
+export const AUTOGRAPH_MARKET: `0x${string}` =
+  "0x9D38850465982be54372B68eD2067d92aD6F817F";
+
+export const autographTypeToNumber: { [key in string]: number } = {
+  ["NFT"]: 0,
+  ["Hoodie"]: 1,
+  ["Shirt"]: 2,
+  ["Catalog"]: 3,
+  ["Mix"]: 4,
+};

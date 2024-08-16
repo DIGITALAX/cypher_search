@@ -79,7 +79,9 @@ export interface Publication {
     | Creation
     | Community
     | Quest
-    | Award;
+    | Award
+    | Catalogo
+    | Coleccion;
   type: string;
   publishedOn?: string;
 }
@@ -98,9 +100,9 @@ export type TilesProps = {
   layoutAmount: number;
   popUpOpen: boolean[];
   setPopUpOpen: (e: SetStateAction<boolean[]>) => void;
+  cartItems: CartItem[];
   router: NextRouter;
   dispatch: Dispatch<AnyAction>;
-  cartItems: CartItem[];
   t: (key: string | number) => string;
   mirror: (id: string) => Promise<void>;
   like: (id: string, hasReacted: boolean) => Promise<void>;
@@ -518,6 +520,27 @@ export type AwardProps = {
   dispatch: Dispatch<AnyAction>;
 };
 
+export type AutografoProps = {
+  publication: Coleccion;
+  t: (key: string | number) => string;
+  router: NextRouter;
+  dispatch: Dispatch<AnyAction>;
+  index: number;
+  profileHovers: boolean[];
+  lensConnected: Profile | undefined;
+  setProfileHovers: (e: SetStateAction<boolean[]>) => void;
+  followLoading: boolean[];
+  followProfile: (id: string) => Promise<void>;
+  unfollowProfile: (id: string) => Promise<void>;
+};
+
+export type CatalogoProps = {
+  publication: Catalogo;
+  t: (key: string | number) => string;
+  router: NextRouter;
+  dispatch: Dispatch<AnyAction>;
+};
+
 export interface Award {
   amount: string;
   tokenAddress: string;
@@ -548,4 +571,57 @@ export interface Award {
       cover: string;
     }[];
   };
+}
+
+export interface Catalogo {
+  paginas: string[];
+  tokenes: string[];
+  uri: {
+    title: string;
+    description: string;
+    cover: string;
+  };
+  disenador: string;
+  precio: number;
+  id: number;
+  pubId: number;
+  profileId: number;
+  cantidad: number;
+  minteado: number;
+  paginasContadas: number;
+  profile: Profile | undefined;
+  tipo: AutographType;
+}
+
+export enum AutographType {
+  NFT = "NFT",
+  Hoodie = "Hoodie",
+  Shirt = "Shirt",
+  Catalog = "Catalog",
+  Mix = "Mix",
+  All = "All",
+}
+
+export interface Coleccion {
+  galeria: string;
+  imagen: string;
+  imagenes: string[];
+  id: number;
+  cantidad: number;
+  tokenes: `0x${string}`[];
+  precio: number;
+  colors: string[];
+  tipo: AutographType;
+  profile: Profile | undefined;
+  titulo: string;
+  descripcion: string;
+  etiquetas: string;
+  npcIdiomas: string;
+  npcInstrucciones: string;
+  npcs: string;
+  tokenesMinteados: number[];
+  galeriaId?: number;
+  coleccionId?: number;
+  profileIds: string[];
+  pubIds: string[];
 }

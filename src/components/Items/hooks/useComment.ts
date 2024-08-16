@@ -27,7 +27,7 @@ import errorChoice from "../../../../lib/helpers/errorChoice";
 const useComment = (
   address: `0x${string}` | undefined,
   publicClient: PublicClient,
-  pubId: string,
+  pubId: string | undefined,
   lensConnected: Profile | undefined,
   dispatch: Dispatch<AnyAction>,
   postCollectGif: PostCollectGifState,

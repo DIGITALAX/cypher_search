@@ -61,7 +61,7 @@ const DropDown: FunctionComponent<DropDownProps> = ({
                   className="relative w-full h-8 py-px bg-offBlack items-center justify-center flex text-sol text-sm uppercase font-bit hover:bg-skyBlue hover:text-black cursor-pointer"
                   onClick={() => onDropDownChoose(value)}
                 >
-                  {value.replaceAll("_", " ")}
+                  {value.replaceAll(/_/g, " ")}
                 </div>
               );
             })}

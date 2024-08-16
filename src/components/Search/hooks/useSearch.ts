@@ -31,7 +31,13 @@ import {
   AllSearchItemsState,
   setAllSearchItems,
 } from "../../../../redux/reducers/searchItemsSlice";
-import { Award, Creation, Publication } from "./../../Tiles/types/tiles.types";
+import {
+  Award,
+  Catalogo,
+  Coleccion,
+  Creation,
+  Publication,
+} from "./../../Tiles/types/tiles.types";
 import getMicrobrands from "../../../../graphql/lens/queries/microbrands";
 import { getAllCollections } from "../../../../graphql/subgraph/queries/getAllCollections";
 import { buildQuery } from "../../../../lib/helpers/buildQuery";
@@ -62,6 +68,7 @@ import {
 import handleQuestData from "../../../../lib/helpers/handleQuestData";
 import { getAllRewards } from "../../../../graphql/subgraph/queries/getAllRewards";
 import handleAwardsData from "../../../../lib/helpers/handleAwardsData";
+import { manejearCatalogos } from "../../../../lib/helpers/manejarCatalogos";
 
 const useSearch = (
   filtersOpen: FiltersOpenState,
@@ -119,6 +126,7 @@ const useSearch = (
       collections: Creation[] | undefined = [],
       quests: Quest[] | undefined = [],
       awards: Award[] | undefined = [],
+      catalogos: (Catalogo | Coleccion)[] | undefined = [],
       profiles: Profile[] | undefined = [],
       publications: (Post | Comment | Quote | Mirror)[] | undefined = [],
       pubCursor: string | undefined,
@@ -357,6 +365,10 @@ const useSearch = (
         }
       }
 
+      if (filters?.catalog?.split(",")?.length > 0) {
+        catalogos = await manejearCatalogos(lensConnected, 10, 0);
+      }
+
       if (
         ((filters?.microbrand?.trim() !== "" && filters?.microbrand) ||
           (query &&
@@ -455,6 +467,10 @@ const useSearch = (
           post: item,
           type: "Award",
         })) || [],
+        catalogos?.map((item) => ({
+          post: item,
+          type: "Catalogo",
+        })) || [],
         [
           ...(profiles?.map((item) => ({
             post: item,
@@ -480,17 +496,19 @@ const useSearch = (
           actionItems: backup
             ? [...(allSearchItems?.items || []), ...mixArrays(allItems)]
             : mixArrays(allItems),
-          actionGraphCursor: collections?.length == 10 ? 10 : undefined,
-          actionKinoraCursor: quests?.length == 10 ? 10 : undefined,
-          actionAwardCursor: awards?.length == 10 ? 10 : undefined,
+          actionGraphCursor: Number(collections?.length) >= 10 ? 10 : undefined,
+          actionKinoraCursor: Number(quests?.length) >= 10 ? 10 : undefined,
+          actionAwardCursor: Number(awards?.length) >= 10 ? 10 : undefined,
+          actionCatalogoCursor:
+            Number(catalogos?.length) >= 10 ? 10 : undefined,
           actionLensProfileCursor: profileCursor,
           actionLensPubCursor: pubCursor,
           actionPubProfileCursor: pubProfileCursor,
           actionVideoCursor: videoCursor,
           actionHasMore:
-            collections?.length == 10 ||
+            Number(collections?.length) >= 10 ||
             publications?.length >= 10 ||
-            profiles?.length == 10 ||
+            profiles?.length >= 10 ||
             pubProfileCursor ||
             videoCursor
               ? true
@@ -652,6 +670,7 @@ const useSearch = (
       collections: Creation[] | undefined = [],
       quests: Quest[] | undefined = [],
       awards: Award[] | undefined = [],
+      catalogos: (Catalogo | Coleccion)[] | undefined = [],
       profiles: Profile[] | undefined = [],
       publications: (Post | Comment | Quote | Mirror)[] | undefined = [],
       pubProfileCursor: string | undefined,
@@ -882,6 +901,14 @@ const useSearch = (
         }
       }
 
+      if (allSearchItems?.catalogoCursor) {
+        catalogos = await manejearCatalogos(
+          lensConnected,
+          10,
+          allSearchItems?.catalogoCursor
+        );
+      }
+
       const newItems = [
         collections?.map((item) => ({
           post: item,
@@ -894,6 +921,10 @@ const useSearch = (
         awards?.map((item) => ({
           post: item,
           type: "Award",
+        })) || [],
+        catalogos?.map((item) => ({
+          post: item,
+          type: "Catalogo",
         })) || [],
         [
           ...(profiles?.map((item) => ({
@@ -918,18 +949,23 @@ const useSearch = (
         setAllSearchItems({
           actionItems: [...allSearchItems?.items!, ...mixArrays(newItems)],
           actionGraphCursor: allSearchItems?.graphCursor
-            ? collections?.length == 10
+            ? Number(collections?.length) >= 10
               ? allSearchItems?.graphCursor + 10
               : undefined
             : undefined,
           actionKinoraCursor: allSearchItems?.kinoraCursor
-            ? quests?.length == 10
+            ? Number(quests?.length) >= 10
               ? allSearchItems?.kinoraCursor + 10
               : undefined
             : undefined,
           actionAwardCursor: allSearchItems?.awardCursor
-            ? awards?.length == 10
+            ? Number(awards?.length) >= 10
               ? allSearchItems?.awardCursor + 10
+              : undefined
+            : undefined,
+          actionCatalogoCursor: allSearchItems?.catalogoCursor
+            ? Number(catalogos?.length) >= 10
+              ? allSearchItems?.catalogoCursor + 10
               : undefined
             : undefined,
           actionLensProfileCursor: profileCursor,
@@ -937,9 +973,9 @@ const useSearch = (
           actionVideoCursor: videoCursor,
           actionPubProfileCursor: pubProfileCursor,
           actionHasMore:
-            collections?.length == 10 ||
+            Number(collections?.length) >= 10 ||
             publications?.length >= 10 ||
-            profiles?.length == 10 ||
+            profiles?.length >= 10 ||
             pubProfileCursor ||
             videoCursor
               ? true

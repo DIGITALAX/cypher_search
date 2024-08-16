@@ -48,6 +48,7 @@ import findBalance from "../../../../lib/helpers/findBalance";
 import handleQuestData from "../../../../lib/helpers/handleQuestData";
 import { getQuest } from "../../../../graphql/subgraph/queries/getQuests";
 import { FetchResult } from "@apollo/client";
+import { manejearCatalogos } from "../../../../lib/helpers/manejarCatalogos";
 
 const useItem = (
   type: string,
@@ -89,6 +90,27 @@ const useItem = (
     try {
       let pub: Post | Mirror | Comment | Quote;
       switch (type?.toLowerCase()) {
+        case "catalog":
+          const cata = await manejearCatalogos(
+            lensConnected,
+            0,
+            0,
+            id
+          );
+          setItemData({
+            post: cata?.[0],
+            type,
+          });
+          setPurchaseDetails({
+            color: "",
+            currency: cata?.[0]?.tokenes?.[0] as string,
+            size: "",
+            price: String(cata?.[0]?.precio) as string,
+            imageIndex: 0,
+            priceIndex: 0,
+          });
+          break;
+
         case "chromadin":
         case "listener":
         case "coinop":

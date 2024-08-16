@@ -18,14 +18,17 @@ import NotFound from "@/components/Common/modules/NotFound";
 import { RootState } from "../../../../redux/store";
 import SwitchType from "@/components/Items/modules/SwitchType";
 import useItem from "@/components/Items/hooks/useItem";
-import { Creation } from "@/components/Tiles/types/tiles.types";
+import {
+  Catalogo,
+  Coleccion,
+  Creation,
+} from "@/components/Tiles/types/tiles.types";
 import {
   Mirror,
   Post,
   Profile,
   TextOnlyMetadataV3,
 } from "../../../../graphql/generated";
-import useComment from "@/components/Items/hooks/useComment";
 import useProfile from "@/components/Autograph/hooks/useProfile";
 import { itemTypeToString } from "../../../../lib/constants";
 import { ItemType } from "@/components/Common/types/common.types";
@@ -34,10 +37,14 @@ import { Quest } from "@/components/Search/types/search.types";
 import { apolloClient } from "../../../../lib/lens/client";
 import { Dispatch as KinoraDispatch } from "kinora-sdk";
 import { useTranslation } from "@/pages/_app";
+import useComment from "@/components/Items/hooks/useComment";
+import useCatalogo from "@/components/Items/hooks/useCatalogo";
+import { LitNodeClient } from "@lit-protocol/lit-node-client";
 
 const Item: NextPage<{
   router: NextRouter;
-}> = ({ router }): JSX.Element => {
+  client: LitNodeClient;
+}> = ({ router, client }): JSX.Element => {
   const { t, setLocale, locale } = useTranslation();
   const publicClient = createPublicClient({
     chain: polygon,
@@ -168,10 +175,12 @@ const Item: NextPage<{
   } = useComment(
     address,
     publicClient,
-    type === "chromadin" ||
-      type === "coinop" ||
-      type === "listener" ||
-      type === "f3m"
+    type === "catalog"
+      ? undefined
+      : type === "chromadin" ||
+        type === "coinop" ||
+        type === "listener" ||
+        type === "f3m"
       ? (itemData?.post as Creation)?.publication?.id
       : (itemData?.post as Mirror)?.__typename === "Mirror"
       ? (itemData?.post as Mirror)?.mirrorOn?.id
@@ -186,13 +195,34 @@ const Item: NextPage<{
     setRelatedData,
     t
   );
+  const {
+    details,
+    setDetails,
+    openDropdown,
+    setOpenDropdown,
+    aprobado,
+    compraCargando,
+    manejarCompra,
+    aprobarGastos,
+  } = useCatalogo(
+    address,
+    client,
+    publicClient,
+    purchaseDetails,
+    itemData as unknown as Catalogo | Coleccion,
+    oracleData,
+    dispatch,
+    type as string
+  );
   const { getMoreSuggested, suggestedFeed, loaders, setSuggestedFeed } =
     useSuggested(
       id as string,
-      type === "chromadin" ||
-        type === "coinop" ||
-        type === "listener" ||
-        type === "f3m"
+      type == "catalog"
+        ? (itemData?.post as Catalogo)?.profile
+        : type === "chromadin" ||
+          type === "coinop" ||
+          type === "listener" ||
+          type === "f3m"
         ? (itemData?.post as Creation)?.profile
         : type == "kinora"
         ? (itemData?.post as Quest)?.publication?.by
@@ -315,7 +345,8 @@ const Item: NextPage<{
     return (
       <>
         {!itemData?.post ||
-        (Object.keys(itemData?.post).length === 1 &&
+        (type !== "catalog" &&
+          Object.keys(itemData?.post).length === 1 &&
           (itemData?.post as any)?.decrypted === undefined) ? (
           <NotFound
             t={t}
@@ -349,7 +380,7 @@ const Item: NextPage<{
               <Head>
                 <title>
                   {(type as string)?.toUpperCase()} |{" "}
-                  {(id as string)?.replaceAll("_", " ")?.toUpperCase()}
+                  {(id as string)?.replaceAll(/_/g, " ")?.toUpperCase()}
                 </title>
                 <link rel="icon" href="/favicon.ico" />
                 <meta
@@ -358,7 +389,7 @@ const Item: NextPage<{
                 />
                 <meta
                   name="og:title"
-                  content={(id as string)?.replaceAll("_", " ")?.toUpperCase()}
+                  content={(id as string)?.replaceAll(/_/g, " ")?.toUpperCase()}
                 />
                 <meta
                   name="og:description"
@@ -392,13 +423,13 @@ const Item: NextPage<{
                   name="twitter:image"
                   content={`https://cypher.digitalax.xyz/item/${
                     itemTypeToString[Number(type) as unknown as ItemType]
-                  }/${(id as string)?.replaceAll("_", " ")}`}
+                  }/${(id as string)?.replaceAll(/_/g, " ")}`}
                 />
                 <meta
                   name="twitter:url"
                   content={`https://cypher.digitalax.xyz/item/${
                     itemTypeToString[Number(type) as unknown as ItemType]
-                  }/${(id as string)?.replaceAll("_", " ")}`}
+                  }/${(id as string)?.replaceAll(/_/g, " ")}`}
                 />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link
@@ -502,6 +533,15 @@ const Item: NextPage<{
                   <SwitchType
                     t={t}
                     locale={locale}
+                    details={details}
+                    setDetails={setDetails}
+                    setOpenDropdown={setOpenDropdown}
+                    openDropdown={openDropdown}
+                    aprobado={aprobado}
+                    compraCargando={compraCargando}
+                    manejarCompra={manejarCompra}
+                    aprobarGastos={aprobarGastos}
+                    address={address}
                     joinLoading={joinLoading}
                     handlePlayerJoin={handlePlayerJoin}
                     allSearchItems={allSearchItems}

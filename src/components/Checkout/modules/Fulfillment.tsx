@@ -237,19 +237,19 @@ const Fulfillment: FunctionComponent<FulfillmentProps> = ({
           <div className="relative w-fit h-fit flex text-xl text-white break-words">
             {t("sTot")}
           </div>
-          {groupedByPubId[chooseCartItem?.item?.pubId!] && (
+          {groupedByPubId?.[chooseCartItem?.item?.pubId!] && (
             <div className="relative flex flex-row flex-wrap items-start justify-start gap-5 w-full h-fit text-sol">
               {`${parseFloat(
                 (
                   Number(
-                    groupedByPubId[
+                    groupedByPubId?.[
                       chooseCartItem?.item?.pubId!
                     ]?.prices?.reduce(
                       (sum, item, index) =>
                         sum +
                         Number(item) *
                           Number(
-                            groupedByPubId[chooseCartItem?.item?.pubId!]
+                            groupedByPubId?.[chooseCartItem?.item?.pubId!]
                               ?.amounts?.[index]
                           ),
                       0

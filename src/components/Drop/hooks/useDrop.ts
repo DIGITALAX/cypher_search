@@ -15,7 +15,7 @@ const useDrop = (drop: string, profile: Profile | undefined) => {
     try {
       const res = await getOneDrop(
         profile?.ownedBy?.address,
-        drop?.replaceAll("_", " ")
+        drop?.replaceAll(/_/g, " ")
       );
 
       return res?.data?.dropCreateds?.[0];

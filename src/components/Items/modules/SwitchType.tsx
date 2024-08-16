@@ -1,7 +1,11 @@
 import { FunctionComponent } from "react";
 import Chromadin from "./Chromadin";
 import { SwitchTypeProps } from "../types/item.types";
-import { Creation } from "@/components/Tiles/types/tiles.types";
+import {
+  Catalogo as CatalogoTipo,
+  Coleccion,
+  Creation,
+} from "@/components/Tiles/types/tiles.types";
 import Pub from "./Pub";
 import Community from "./Community";
 import Microbrand from "./Microbrand";
@@ -14,6 +18,8 @@ import {
   Profile,
 } from "../../../../graphql/generated";
 import { Quest } from "@/components/Search/types/search.types";
+import Catalogo from "./Catalogo";
+import Autografo from "./Autografo";
 
 const SwitchType: FunctionComponent<SwitchTypeProps> = ({
   type,
@@ -96,6 +102,15 @@ const SwitchType: FunctionComponent<SwitchTypeProps> = ({
   handlePlayerJoin,
   t,
   locale,
+  address,
+  details,
+  setDetails,
+  openDropdown,
+  setOpenDropdown,
+  aprobado,
+  compraCargando,
+  manejarCompra,
+  aprobarGastos,
 }) => {
   switch (type.toLowerCase()) {
     case "chromadin":
@@ -239,6 +254,51 @@ const SwitchType: FunctionComponent<SwitchTypeProps> = ({
           profilesOpenMain={profilesOpenMain}
         />
       );
+
+    case "catalog":
+      switch ((itemData?.post as CatalogoTipo | Coleccion)?.tipo) {
+        case "Catalog":
+          return (
+            <Catalogo
+              address={address}
+              oracleData={oracleData}
+              t={t}
+              details={details}
+              setDetails={setDetails}
+              openDropdown={openDropdown}
+              setOpenDropdown={setOpenDropdown}
+              itemData={itemData?.post as CatalogoTipo}
+              purchaseDetails={purchaseDetails}
+              setPurchaseDetails={setPurchaseDetails}
+              handleInstantPurchase={manejarCompra}
+              instantLoading={compraCargando}
+              approveSpend={aprobarGastos}
+              isApprovedSpend={aprobado}
+            />
+          );
+        default:
+          return (
+            <Autografo
+              address={address}
+              oracleData={oracleData}
+              t={t}
+              details={details}
+              setDetails={setDetails}
+              openDropdown={openDropdown}
+              setOpenDropdown={setOpenDropdown}
+              itemData={itemData?.post as Coleccion}
+              purchaseDetails={purchaseDetails}
+              setPurchaseDetails={setPurchaseDetails}
+              handleInstantPurchase={manejarCompra}
+              instantLoading={compraCargando}
+              approveSpend={aprobarGastos}
+              isApprovedSpend={aprobado}
+              router={router}
+              dispatch={dispatch}
+              allSearchItems={allSearchItems}
+            />
+          );
+      }
 
     case "pub":
       return (

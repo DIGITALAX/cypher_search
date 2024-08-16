@@ -6,6 +6,8 @@ import VideoPost from "./Tiles/VideoPost";
 import TextPost from "./Tiles/TextPost";
 import {
   Award as AwardType,
+  Catalogo as CatalogoTipo,
+  Coleccion,
   Community as CommunityType,
   Creation,
   TileSwitchProps,
@@ -26,6 +28,8 @@ import Community from "./Tiles/Community";
 import LoadTile from "./Tiles/LoadTile";
 import { Quest as QuestType } from "@/components/Search/types/search.types";
 import Award from "./Tiles/Award";
+import Catalogo from "./Tiles/Catalogo";
+import Autografo from "./Tiles/Autografo";
 
 const TileSwitch: FunctionComponent<TileSwitchProps> = ({
   type,
@@ -112,6 +116,37 @@ const TileSwitch: FunctionComponent<TileSwitchProps> = ({
         collectionsRelated={collectionsRelated}
       />
     );
+  }
+
+  if (type?.toLowerCase() == "catalogo") {
+    switch ((publication?.post as Coleccion | CatalogoTipo)?.tipo) {
+      case "Catalog":
+        return (
+          <Catalogo
+            dispatch={dispatch}
+            publication={publication?.post as CatalogoTipo}
+            router={router}
+            t={t}
+          />
+        );
+
+      default:
+        return (
+          <Autografo
+            dispatch={dispatch}
+            publication={publication?.post as Coleccion}
+            router={router}
+            t={t}
+            setProfileHovers={setProfileHovers}
+            profileHovers={profileHovers}
+            followLoading={followLoading}
+            followProfile={followProfile}
+            unfollowProfile={unfollowProfile}
+            index={index}
+            lensConnected={lensConnected}
+          />
+        );
+    }
   }
 
   if (type?.toLowerCase() == "award") {

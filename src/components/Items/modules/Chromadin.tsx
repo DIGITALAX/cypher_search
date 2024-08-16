@@ -326,7 +326,7 @@ const Chromadin: FunctionComponent<ChromadinProps> = ({
                             type?.toLowerCase() == "listener") ||
                           (item[0]?.toLowerCase()?.trim() == "f3m" &&
                             type?.toLowerCase() == "f3m")
-                      )?.[1]
+                       )?.[1]
                     }`}
                     onError={(e) => handleImageError(e)}
                     layout="fill"
@@ -817,9 +817,7 @@ const Chromadin: FunctionComponent<ChromadinProps> = ({
                 : "cursor-pointer active:scale-95"
             }`}
             title={
-              itemData?.amount == itemData?.soldTokens
-                ? "Sold Out"
-                : "Add to Cart"
+              itemData?.amount == itemData?.soldTokens ? t("sod") : t("cart")
             }
             onClick={() => {
               if (itemData?.amount == itemData?.soldTokens) return;

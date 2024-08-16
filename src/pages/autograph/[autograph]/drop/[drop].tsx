@@ -195,7 +195,7 @@ const Drop: NextPage<{
             >
               <Head>
                 <title>
-                  {(drop as string)?.replaceAll("_", " ")?.toUpperCase()} |{" "}
+                  {(drop as string)?.replaceAll(/_/g, " ")?.toUpperCase()} |{" "}
                   {profile?.handle?.localName?.toUpperCase()}
                 </title>
                 <link rel="icon" href="/favicon.ico" />

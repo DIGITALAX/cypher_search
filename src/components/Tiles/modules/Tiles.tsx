@@ -112,7 +112,7 @@ const Tiles: FunctionComponent<TilesProps> = ({
     <div
       className={`relative w-full min-h-screen h-fit overflow-y-scroll pb-6 px-4 ${
         searchActive || filtersOpen
-          ? "pt-72 galaxy:pt-52 tablet:pt-24"
+          ? "pt-[30rem] galaxy:pt-[28rem] pre:pt-56 tablet:pt-44"
           : "pt-24"
       }`}
       id="tileSearch"

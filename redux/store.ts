@@ -12,6 +12,7 @@ import insufficientBalanceReducer from "./reducers/insufficientBalanceSlice";
 import filterChangeReducer from "./reducers/filterChangeSlice";
 import profileDisplayReducer from "./reducers/profileDisplaySlice";
 import postSuccessReducer from "./reducers/postSuccessSlice";
+import headerSlice from "./reducers/headerSlice";
 import isDesignerReducer from "./reducers/isDesignerSlice";
 import oracleDataReducer from "./reducers/oracleDataSlice";
 import successCheckoutReducer from "./reducers/successCheckoutSlice";
@@ -53,6 +54,7 @@ const reducer = combineReducers({
   interactErrorReducer,
   displaySearchBoxReducer,
   indexerReducer,
+  headerSlice,
   postBoxReducer,
   screenDisplayReducer,
   questSuccessReducer,

@@ -34,14 +34,19 @@ const Autografo: FunctionComponent<AutografoProps> = ({
   router,
   dispatch,
   allSearchItems,
+  header,
 }): JSX.Element => {
   const profilePicture = createProfilePicture(
     itemData?.profile?.metadata?.picture
   );
   return (
     <div
-      className={`relative w-full h-fit xl:h-[50rem] flex justify-center flex-row pt-52 sm:pt-40 tablet:pt-32 px-2 sm:px-12 gap-12 xl:gap-7 flex-wrap xl:flex-nowrap ${
-        itemData?.tipo !== AutographType.NFT ? "items-start overflow-y-scroll" : "items-center"
+      className={`relative w-full h-fit xl:h-[50rem] flex items-center justify-center flex-row pre:pt-60 tablet:pt-40 lg:pt-32 px-2 sm:px-12 gap-12 xl:gap-7 flex-wrap xl:flex-nowrap ${
+        header ? "pt-96" : "pt-0"
+      }  ${
+        itemData?.tipo !== AutographType.NFT
+          ? "items-start overflow-y-scroll"
+          : "items-center"
       }`}
     >
       <div className="relative w-full h-full flex items-center justify-center">

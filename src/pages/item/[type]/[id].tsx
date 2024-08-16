@@ -70,6 +70,7 @@ const Item: NextPage<{
   const filterConstants = useSelector(
     (state: RootState) => state.app.filterConstantsReducer.items
   );
+  const header = useSelector((state: RootState) => state.app.headerSlice.value);
   const cartItems = useSelector(
     (state: RootState) => state.app.cartItemsReducer.items
   );
@@ -521,6 +522,7 @@ const Item: NextPage<{
               </Head>
               <Suggested
                 t={t}
+                header={header}
                 locale={locale}
                 setLocale={setLocale}
                 filterConstants={filterConstants}
@@ -532,6 +534,7 @@ const Item: NextPage<{
                 component={
                   <SwitchType
                     t={t}
+                    header={header}
                     locale={locale}
                     details={details}
                     setDetails={setDetails}

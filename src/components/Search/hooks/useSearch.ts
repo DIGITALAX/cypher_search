@@ -365,7 +365,7 @@ const useSearch = (
         }
       }
 
-      if (filters?.catalog?.split(",")?.length > 0) {
+      if (filters?.catalog?.trim() !== "") {
         catalogos = await manejearCatalogos(lensConnected, 10, 0);
       }
 

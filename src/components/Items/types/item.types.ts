@@ -35,6 +35,7 @@ export type SwitchTypeProps = {
   aprobarGastos: () => Promise<void>;
   setDetails: (e: SetStateAction<Details>) => void;
   openDropdown: boolean;
+  header: boolean;
   setOpenDropdown: (e: SetStateAction<boolean>) => void;
   type: string;
   hoverPrompt: boolean;
@@ -189,6 +190,7 @@ export type ChromadinProps = {
     y: number;
   };
   locale: "en" | "es";
+  header: boolean;
   allSearchItems: AllSearchItemsState;
   setCaretCoord: (
     e: SetStateAction<{
@@ -334,6 +336,7 @@ export type PublicationProps = {
       y: number;
     }>
   ) => void;
+  header: boolean;
   profilesOpen: boolean[];
   mentionProfiles: Profile[];
   setMentionProfiles: (e: SetStateAction<Profile[]>) => void;
@@ -425,6 +428,7 @@ export type MicrobrandProps = {
   router: NextRouter;
   dispatch: Dispatch<AnyAction>;
   itemData: Profile;
+  header: boolean
   lensConnected: Profile | undefined;
   t: (key: string | number) => string;
   relatedData:
@@ -568,6 +572,7 @@ export type KinoraProps = {
   joinLoading: boolean;
   handlePlayerJoin: () => Promise<void>;
   purchaseDetails: PurchaseDetails;
+  header: boolean;
   setPurchaseDetails: (e: SetStateAction<PurchaseDetails>) => void;
   t: (key: string | number) => string;
 };
@@ -589,6 +594,7 @@ export type AutografoProps = {
   openDropdown: boolean;
   setOpenDropdown: (e: SetStateAction<boolean>) => void;
   dispatch: Dispatch;
+  header: boolean;
   allSearchItems: AllSearchItemsState;
 };
 
@@ -606,5 +612,6 @@ export type CatalogoProps = {
   details: Details;
   setDetails: (e: SetStateAction<Details>) => void;
   openDropdown: boolean;
+  header: boolean;
   setOpenDropdown: (e: SetStateAction<boolean>) => void;
 };

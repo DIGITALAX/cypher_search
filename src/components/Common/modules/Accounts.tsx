@@ -41,12 +41,12 @@ const Accounts: FunctionComponent<AccountsProps> = ({
   return (
     <>
       <div
-        className={`w-full pre:w-fit h-10 flex flex-row gap-4 items-center justify-center ${
+        className={`w-full pre:w-fit h-fit pre:h-10 flex flex-col pre:flex-row gap-4 items-center justify-center ${
           (searchActive || filtersOpen) &&
           !auto &&
           typeof window !== "undefined" &&
-          window.innerWidth > 400
-            ? "absolute top-2 right-2 sm:top-auto sm:right-auto sm:relative"
+          window.innerWidth < 1024
+            ? "relative pre:absolute pre:top-2 pre:right-2 lg:top-auto lg:right-auto lg:relative"
             : "relative"
         }`}
       >
@@ -136,7 +136,7 @@ const Accounts: FunctionComponent<AccountsProps> = ({
           </div>
         )}
         <div
-          className="relative w-8 h-4/5 flex items-center justify-center cursor-pointer active:scale-95"
+          className="relative w-8 h-8 pre:h-4/5 flex items-center justify-center cursor-pointer active:scale-95"
           id={cartAnim ? "cartAnim" : ""}
           title="Cart"
           onClick={() => {
@@ -152,8 +152,8 @@ const Accounts: FunctionComponent<AccountsProps> = ({
         </div>
         {cartItems?.length > 0 && (
           <div
-            className={`absolute rounded-full border border-mar bg-black w-5 flex items-center justify-center -bottom-1 h-5 p-1 font-vcr text-mar text-xxs z-1 ${
-              lensConnected?.id ? "right-[8.5rem]" : "right-[5.5rem]"
+            className={`absolute rounded-full border border-mar bg-black w-5 flex items-center justify-center pre:top-auto top-32 pre:-bottom-1 h-5 p-1 font-vcr text-mar text-xxs z-1 pre:left-auto ${
+              lensConnected?.id ? "pre:right-[8.5rem]" : "pre:right-[5.5rem]"
             }`}
           >
             {cartItems?.length}
@@ -161,7 +161,7 @@ const Accounts: FunctionComponent<AccountsProps> = ({
         )}
 
         <div
-          className="relative w-8 h-4/5 flex items-center justify-center cursor-pointer active:scale-95"
+          className="relative w-8 h-8 pre:h-4/5 flex items-center justify-center cursor-pointer active:scale-95"
           onClick={() =>
             dispatch(
               setFullScreenVideo({
@@ -186,7 +186,7 @@ const Accounts: FunctionComponent<AccountsProps> = ({
           />
         </div>
         <div
-          className="relative w-8 h-4/5 flex items-center justify-center cursor-pointer active:scale-95"
+          className="relative w-8 h-8 pre:h-4/5 flex items-center justify-center cursor-pointer active:scale-95"
           onClick={
             !walletConnected
               ? openConnectModal
@@ -209,7 +209,7 @@ const Accounts: FunctionComponent<AccountsProps> = ({
         </div>
         {lensConnected && (
           <div
-            className="relative w-8 h-4/5 flex items-center justify-center cursor-pointer rounded-full"
+            className="relative w-8 h-8 pre:h-4/5 flex items-center justify-center cursor-pointer rounded-full"
             id="pfp"
             onClick={() => {
               lensConnected && setOpenAccount(!openAccount);
@@ -231,11 +231,11 @@ const Accounts: FunctionComponent<AccountsProps> = ({
       </div>
       {openAccount && !filtersOpen && (
         <div
-          className={`absolute w-32 h-fit right-3 top-14  tablet:top-16 flex items-center justify-center text-sol flex-col font-bit rounded-sm bg-black text-xs z-30 border border-sol ${
+          className={`absolute w-32 h-fit right-3 top-14 tablet:top-16 flex items-center justify-center text-sol flex-col font-bit rounded-sm bg-black text-xs z-30 border border-sol ${
             router.asPath?.includes("/checkout") ||
             (!searchActive && router.asPath == "/")
-              ? "sm:top-14"
-              : "sm:top-24"
+              ? "pre:top-14"
+              : "pre:top-24"
           }`}
         >
           <div

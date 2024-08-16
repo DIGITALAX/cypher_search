@@ -48,6 +48,7 @@ const Suggested: FunctionComponent<SuggestedProps> = ({
   t,
   locale,
   setLocale,
+  header,
 }) => {
   return (
     <div
@@ -57,6 +58,7 @@ const Suggested: FunctionComponent<SuggestedProps> = ({
       <Header
         t={t}
         locale={locale}
+        header={header}
         setLocale={setLocale}
         fullScreenVideo={fullScreenVideo}
         cartAnim={cartAnim}

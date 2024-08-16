@@ -51,6 +51,7 @@ export default function Home({ router }: { router: NextRouter }) {
   const filterConstants = useSelector(
     (state: RootState) => state.app.filterConstantsReducer.items
   );
+  const header = useSelector(  (state: RootState) => state.app.headerSlice.value)
   const filters = useSelector(
     (state: RootState) => state.app.filterReducer.filter
   );
@@ -155,6 +156,7 @@ export default function Home({ router }: { router: NextRouter }) {
       >
         <Header
           t={t}
+          header={header}
           locale={locale}
           setLocale={setLocale}
           fullScreenVideo={fullScreenVideo}

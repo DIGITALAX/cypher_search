@@ -61,6 +61,7 @@ const Drop: NextPage<{
   const searchActive = useSelector(
     (state: RootState) => state.app.searchActiveReducer.value
   );
+  const header = useSelector((state: RootState) => state.app.headerSlice.value);
   const filters = useSelector(
     (state: RootState) => state.app.filterReducer.filter
   );
@@ -336,6 +337,7 @@ const Drop: NextPage<{
                 locale={locale}
                 setLocale={setLocale}
                 t={t}
+                header={header}
                 filterConstants={filterConstants}
                 filterChange={filterChange}
                 fullScreenVideo={fullScreenVideo}

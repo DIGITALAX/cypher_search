@@ -47,6 +47,7 @@ const Checkout: NextPage<{
   const filtersOpen = useSelector(
     (state: RootState) => state.app.filtersOpenReducer
   );
+  const header = useSelector((state: RootState) => state.app.headerSlice.value);
   const allSearchItems = useSelector(
     (state: RootState) => state.app.searchItemsReducer
   );
@@ -125,6 +126,7 @@ const Checkout: NextPage<{
       </Head>
       <Header
         locale={locale}
+        header={header}
         t={t}
         setLocale={setLocale}
         filterChange={filterChange}

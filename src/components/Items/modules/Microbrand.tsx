@@ -28,10 +28,15 @@ const Microbrand: FunctionComponent<MicrobrandProps> = ({
   setProfileHovers,
   lensConnected,
   t,
+  header,
 }): JSX.Element => {
   const profilePicture = createProfilePicture(itemData?.metadata?.picture);
   return (
-    <div className="relative w-full min-h-[50rem] flex items-center justify-start flex-col  pt-52 sm:pt-40 md:pt-36 px-12 gap-7 h-fit">
+    <div
+      className={`relative w-full min-h-[50rem] flex items-center justify-start flex-col pre:pt-60 tablet:pt-48 px-12 gap-7 h-fit ${
+        header ? "pt-96" : "pt-0"
+      }`}
+    >
       <div className="relative w-full h-fit flex flex-col gap-6 items-center justify-center">
         <div className="relative w-full h-[10rem] flex items-center justify-center">
           {relatedData?.microbrand?.[0]?.microbrandCover && (

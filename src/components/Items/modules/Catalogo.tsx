@@ -25,11 +25,16 @@ const Catalogo: FunctionComponent<CatalogoProps> = ({
   setDetails,
   setOpenDropdown,
   openDropdown,
+  header,
 }): JSX.Element => {
   const { bookRef } = usePagina(itemData);
 
   return (
-    <div className="relative w-full h-fit xl:h-[50rem] flex items-center justify-center flex-row pt-52 sm:pt-40 tablet:pt-32 px-2 sm:px-12 gap-12 xl:gap-7 flex-wrap xl:flex-nowrap">
+    <div
+      className={`relative w-full h-fit xl:h-[50rem] flex items-center justify-center flex-row pre:pt-60 tablet:pt-40 lg:pt-32 px-2 sm:px-12 gap-12 xl:gap-7 flex-wrap xl:flex-nowrap ${
+        header ? "pt-96" : "pt-0"
+      }`}
+    >
       <div
         className="relative w-full h-full flex items-center justify-center overflow-hidden"
         id="padre"

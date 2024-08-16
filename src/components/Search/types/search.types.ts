@@ -68,6 +68,7 @@ export type HeaderProps = {
   t: (key: string | number) => string;
   dispatch: Dispatch<AnyAction>;
   includeSearch: boolean;
+  header: boolean;
   locale: "en" | "es";
   setLocale: (locale: "en" | "es") => void;
   router: NextRouter;

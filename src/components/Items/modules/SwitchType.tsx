@@ -111,6 +111,7 @@ const SwitchType: FunctionComponent<SwitchTypeProps> = ({
   compraCargando,
   manejarCompra,
   aprobarGastos,
+  header
 }) => {
   switch (type.toLowerCase()) {
     case "chromadin":
@@ -123,6 +124,7 @@ const SwitchType: FunctionComponent<SwitchTypeProps> = ({
           locale={locale}
           allSearchItems={allSearchItems}
           hoverPrompt={hoverPrompt}
+          header={header}
           setHoverPrompt={setHoverPrompt}
           setCaretCoord={setCaretCoord}
           setCaretCoordMain={setCaretCoordMain}
@@ -196,6 +198,7 @@ const SwitchType: FunctionComponent<SwitchTypeProps> = ({
         <Kinora
           purchaseDetails={purchaseDetails}
           t={t}
+          header={header}
           locale={locale}
           setPurchaseDetails={setPurchaseDetails}
           joinLoading={joinLoading}
@@ -273,6 +276,7 @@ const SwitchType: FunctionComponent<SwitchTypeProps> = ({
               handleInstantPurchase={manejarCompra}
               instantLoading={compraCargando}
               approveSpend={aprobarGastos}
+              header={header}
               isApprovedSpend={aprobado}
             />
           );
@@ -282,6 +286,7 @@ const SwitchType: FunctionComponent<SwitchTypeProps> = ({
               address={address}
               oracleData={oracleData}
               t={t}
+              header={header}
               details={details}
               setDetails={setDetails}
               openDropdown={openDropdown}
@@ -339,6 +344,7 @@ const SwitchType: FunctionComponent<SwitchTypeProps> = ({
           postCollectGif={postCollectGif}
           mirror={mirror}
           like={like}
+          header={header}
           comment={comment}
           handleMoreComments={handleMoreComments}
           hasMoreComments={hasMoreComments}
@@ -379,6 +385,7 @@ const SwitchType: FunctionComponent<SwitchTypeProps> = ({
           lensConnected={lensConnected}
           relatedData={relatedData}
           t={t}
+          header={header}
           itemData={itemData?.post as Profile}
           router={router}
           dispatch={dispatch}

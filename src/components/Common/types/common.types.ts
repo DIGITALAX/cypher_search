@@ -214,6 +214,7 @@ export type SuggestedProps = {
   t: (key: string | number) => string;
   filterConstants: FilterValues | undefined;
   locale: "en" | "es";
+  header: boolean;
   setLocale: (e: "en" | "es") => void;
   layoutAmount?: number;
   handleSearch?: (

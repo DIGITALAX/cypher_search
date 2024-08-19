@@ -30,6 +30,7 @@ import {
 } from "@livepeer/react";
 import { KinoraProvider } from "kinora-sdk";
 import { apolloClient } from "../../lib/lens/client";
+import Head from "next/head";
 
 const walletTheme = merge(darkTheme(), {
   colors: {
@@ -149,6 +150,26 @@ function App({ Component, pageProps }: AppProps) {
                         : "bg-offBlack"
                     }`}
                   >
+                    <Head>
+                      <meta
+                        name="keywords"
+                        content="Web3, Web3 Fashion, Moda Web3, Open Source, CC0, Emma-Jane MacKinnon-Lee, Open Source LLMs, DIGITALAX, F3Manifesto, www.digitalax.xyz, www.f3manifesto.xyz, Women, Life, Freedom."
+                      />
+                      <meta name="robots" content="index, follow" />
+                      <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{
+                          __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "WebSite",
+                            name: "Cypher Search",
+                            description:
+                              "Web3, Web3 Fashion, Moda Web3, Open Source, CC0, Emma-Jane MacKinnon-Lee, Open Source LLMs, DIGITALAX, F3Manifesto, www.digitalax.xyz, www.f3manifesto.xyz, Women, Life, Freedom.",
+                            url: "https://www.cypher.digitalax.xyz/",
+                          }),
+                        }}
+                      ></script>
+                    </Head>
                     <Component {...pageProps} router={router} client={client} />
                     <Modals router={router} />
                     {router?.asPath?.includes("/autograph/") &&
@@ -156,12 +177,6 @@ function App({ Component, pageProps }: AppProps) {
                         <Cart router={router} />
                       )}
                     <Footer handleRewind={handleRewind} />
-                    <div style={{ display: "none" }}>
-                      Web3, Web3 Fashion, Moda Web3, Open Source, CC0, Emma-Jane
-                      MacKinnon-Lee, Open Source LLMs, DIGITALAX, F3Manifesto,
-                      www.digitalax.xyz, www.f3manifesto.xyz, Women, Life,
-                      Freedom.
-                    </div>
                   </div>
                 </Provider>
               </KinoraProvider>

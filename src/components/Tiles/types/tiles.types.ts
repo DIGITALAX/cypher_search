@@ -67,6 +67,7 @@ export interface Creation {
     onChromadin: string;
     sex: string;
     style: string;
+    extra: string;
   };
 }
 

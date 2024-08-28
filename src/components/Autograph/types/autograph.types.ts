@@ -1544,6 +1544,7 @@ export interface CollectionDetails {
   dropCollectionIds: string[];
   visibility: string;
   communities: string;
+  extra: string;
 }
 
 export type MessagesProps = {

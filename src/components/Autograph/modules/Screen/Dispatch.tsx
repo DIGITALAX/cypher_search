@@ -121,21 +121,18 @@ const Dispatch: FunctionComponent<DispatchProps> = ({
                         layout="fill"
                         src={
                           collectionDetails?.images?.[
-                            collectionSettings?.origin !== "f3m" &&
                             collectionSettings?.origin !== "chromadin"
                               ? collectionSettings?.imageIndex
                               : 0
                           ]?.media?.includes("ipfs://")
                             ? `${INFURA_GATEWAY}/ipfs/${
                                 collectionDetails?.images?.[
-                                  collectionSettings?.origin !== "f3m" &&
                                   collectionSettings?.origin !== "chromadin"
                                     ? collectionSettings?.imageIndex
                                     : 0
                                 ]?.media?.split("ipfs://")?.[1]
                               }`
                             : collectionDetails?.images?.[
-                                collectionSettings?.origin !== "f3m" &&
                                 collectionSettings?.origin !== "chromadin"
                                   ? collectionSettings?.imageIndex
                                   : 0
@@ -216,47 +213,46 @@ const Dispatch: FunctionComponent<DispatchProps> = ({
                         )
                       }
                     />
-                    {collectionSettings?.origin !== "f3m" &&
-                      collectionSettings?.origin !== "chromadin" && (
-                        <div className="absolute z-2 right-2 top-2 w-fit h-fit flex flex-row items-center justify-center gap-1.5 z-10">
-                          <div
-                            className="relative w-5 h-5 cursor-pointer active:scale-95 flex items-center justify-center"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              setCollectionSettings((prev) => ({
-                                ...prev,
-                                imageIndex:
-                                  prev.imageIndex > 0 ? prev.imageIndex - 1 : 2,
-                              }));
-                            }}
-                          >
-                            <Image
-                              src={`${INFURA_GATEWAY}/ipfs/Qma3jm41B4zYQBxag5sJSmfZ45GNykVb8TX9cE3syLafz2`}
-                              layout="fill"
-                              draggable={false}
-                            />
-                          </div>
-                          <div
-                            className="relative  w-5 h-5 cursor-pointer active:scale-95 flex items-center justify-center"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              setCollectionSettings((prev) => ({
-                                ...prev,
-                                imageIndex:
-                                  prev.imageIndex < 2 ? prev.imageIndex + 1 : 0,
-                              }));
-                            }}
-                          >
-                            <Image
-                              src={`${INFURA_GATEWAY}/ipfs/QmcBVNVZWGBDcAxF4i564uSNGZrUvzhu5DKkXESvhY45m6`}
-                              layout="fill"
-                              draggable={false}
-                            />
-                          </div>
+                    {collectionSettings?.origin !== "chromadin" && (
+                      <div className="absolute z-2 right-2 top-2 w-fit h-fit flex flex-row items-center justify-center gap-1.5 z-10">
+                        <div
+                          className="relative w-5 h-5 cursor-pointer active:scale-95 flex items-center justify-center"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setCollectionSettings((prev) => ({
+                              ...prev,
+                              imageIndex:
+                                prev.imageIndex > 0 ? prev.imageIndex - 1 : 3,
+                            }));
+                          }}
+                        >
+                          <Image
+                            src={`${INFURA_GATEWAY}/ipfs/Qma3jm41B4zYQBxag5sJSmfZ45GNykVb8TX9cE3syLafz2`}
+                            layout="fill"
+                            draggable={false}
+                          />
                         </div>
-                      )}
+                        <div
+                          className="relative  w-5 h-5 cursor-pointer active:scale-95 flex items-center justify-center"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setCollectionSettings((prev) => ({
+                              ...prev,
+                              imageIndex:
+                                prev.imageIndex < 3 ? prev.imageIndex + 1 : 0,
+                            }));
+                          }}
+                        >
+                          <Image
+                            src={`${INFURA_GATEWAY}/ipfs/QmcBVNVZWGBDcAxF4i564uSNGZrUvzhu5DKkXESvhY45m6`}
+                            layout="fill"
+                            draggable={false}
+                          />
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </label>
                 {(collectionDetails?.audio ||
@@ -1329,122 +1325,142 @@ const Dispatch: FunctionComponent<DispatchProps> = ({
             </div>
           ) : (
             collectionSettings?.origin == "f3m" && (
-              <div className="relative w-fit h-fit flex flex-wrap gap-4">
-                <div className="relative w-fit h-fit flex flex-col items-start justify-start gap-1">
-                  <div className="relative w-fit h-fit text-sm break-words">
-                    Sex
-                  </div>
+              <div className="relative w-fit h-fit flex flex-col gap-4">
+                <div className="relative w-fit h-fit flex flex-wrap gap-4">
                   <div className="relative w-fit h-fit flex flex-col items-start justify-start gap-1">
-                    <div
-                      className={`relative h-10 flex flex-row justify-between p-2 w-60 max-w-[15rem] items-center justify-center border border-sol rounded-md cursor-pointer bg-offBlack gap-1`}
-                      onClick={() =>
-                        setCollectionSettings((prev) => ({
-                          ...prev,
-                          sexOpen: !prev.sexOpen,
-                        }))
-                      }
-                    >
-                      <div className="relative w-full whitespace-nowrap h-full flex items-center justify-start font-aust text-white text-xs overflow-x-scroll">
-                        {collectionDetails?.sex}
-                      </div>
-                      <div className="relative w-4 h-3 flex items-center justify-center">
-                        <Image
-                          layout="fill"
-                          draggable={false}
-                          src={`${INFURA_GATEWAY}/ipfs/QmRKmMYJj7KAwf4BDGwrd51tKWoS8djnLGWT5XNdrJMztk`}
-                        />
-                      </div>
+                    <div className="relative w-fit h-fit text-sm break-words">
+                      Sex
                     </div>
-                    {collectionSettings?.sexOpen && (
-                      <div className="absolute top-10 bg-offBlack z-10 w-full max-w-[15rem] max-h-[6rem] h-fit flex border border-sol rounded-md overflow-y-scroll">
-                        <div className="relative w-full h-fit flex flex-col items-center justify-start">
-                          {filterConstants?.sexes?.map(
-                            (item: string, index: number) => {
-                              return (
-                                <div
-                                  key={index}
-                                  className="relative w-full py-1 h-10 flex items-center justify-center text-white border-y border-sol font-aust cursor-pointer hover:opacity-80"
-                                  onClick={() => {
-                                    setCollectionSettings((prev) => ({
-                                      ...prev,
-                                      sexOpen: !prev.sexOpen,
-                                    }));
-
-                                    setCollectionDetails((prev) => ({
-                                      ...prev,
-                                      sex: item,
-                                    }));
-                                  }}
-                                >
-                                  <div className="relative w-fit h-fit flex items-center justify-center font-aust text-white text-xs">
-                                    {item}
-                                  </div>
-                                </div>
-                              );
-                            }
-                          )}
+                    <div className="relative w-fit h-fit flex flex-col items-start justify-start gap-1">
+                      <div
+                        className={`relative h-10 flex flex-row justify-between p-2 w-60 max-w-[15rem] items-center justify-center border border-sol rounded-md cursor-pointer bg-offBlack gap-1`}
+                        onClick={() =>
+                          setCollectionSettings((prev) => ({
+                            ...prev,
+                            sexOpen: !prev.sexOpen,
+                          }))
+                        }
+                      >
+                        <div className="relative w-full whitespace-nowrap h-full flex items-center justify-start font-aust text-white text-xs overflow-x-scroll">
+                          {collectionDetails?.sex}
+                        </div>
+                        <div className="relative w-4 h-3 flex items-center justify-center">
+                          <Image
+                            layout="fill"
+                            draggable={false}
+                            src={`${INFURA_GATEWAY}/ipfs/QmRKmMYJj7KAwf4BDGwrd51tKWoS8djnLGWT5XNdrJMztk`}
+                          />
                         </div>
                       </div>
-                    )}
+                      {collectionSettings?.sexOpen && (
+                        <div className="absolute top-10 bg-offBlack z-10 w-full max-w-[15rem] max-h-[6rem] h-fit flex border border-sol rounded-md overflow-y-scroll">
+                          <div className="relative w-full h-fit flex flex-col items-center justify-start">
+                            {filterConstants?.sexes?.map(
+                              (item: string, index: number) => {
+                                return (
+                                  <div
+                                    key={index}
+                                    className="relative w-full py-1 h-10 flex items-center justify-center text-white border-y border-sol font-aust cursor-pointer hover:opacity-80"
+                                    onClick={() => {
+                                      setCollectionSettings((prev) => ({
+                                        ...prev,
+                                        sexOpen: !prev.sexOpen,
+                                      }));
+
+                                      setCollectionDetails((prev) => ({
+                                        ...prev,
+                                        sex: item,
+                                      }));
+                                    }}
+                                  >
+                                    <div className="relative w-fit h-fit flex items-center justify-center font-aust text-white text-xs">
+                                      {item}
+                                    </div>
+                                  </div>
+                                );
+                              }
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="relative w-fit h-fit flex flex-col items-start justify-start gap-1">
+                    <div className="relative w-fit h-fit text-sm break-words">
+                      {t("sty")}
+                    </div>
+                    <div className="relative w-fit h-fit flex flex-col items-start justify-start gap-1">
+                      <div
+                        className={`relative h-10 flex flex-row justify-between p-2 w-60 max-w-[15rem] items-center justify-center border border-sol rounded-md cursor-pointer bg-offBlack gap-1`}
+                        onClick={() =>
+                          setCollectionSettings((prev) => ({
+                            ...prev,
+                            styleOpen: !prev.styleOpen,
+                          }))
+                        }
+                      >
+                        <div className="relative w-full whitespace-nowrap h-full flex items-center justify-start font-aust text-white text-xs overflow-x-scroll">
+                          {collectionDetails?.style}
+                        </div>
+                        <div className="relative w-4 h-3 flex items-center justify-center">
+                          <Image
+                            layout="fill"
+                            draggable={false}
+                            src={`${INFURA_GATEWAY}/ipfs/QmRKmMYJj7KAwf4BDGwrd51tKWoS8djnLGWT5XNdrJMztk`}
+                          />
+                        </div>
+                      </div>
+                      {collectionSettings?.styleOpen && (
+                        <div className="absolute top-10 bg-offBlack z-10 w-full max-w-[15rem] max-h-[6rem] h-fit flex border border-sol rounded-md overflow-y-scroll">
+                          <div className="relative w-full h-fit flex flex-col items-center justify-start">
+                            {filterConstants?.styles
+                              ?.map((item) => item?.[0])
+                              ?.map((item: string, index: number) => {
+                                return (
+                                  <div
+                                    key={index}
+                                    className="relative w-full py-1 h-10 flex items-center justify-center text-white border-y border-sol font-aust cursor-pointer hover:opacity-80"
+                                    onClick={() => {
+                                      setCollectionSettings((prev) => ({
+                                        ...prev,
+                                        styleOpen: !prev.styleOpen,
+                                      }));
+
+                                      setCollectionDetails((prev) => ({
+                                        ...prev,
+                                        style: item,
+                                      }));
+                                    }}
+                                  >
+                                    <div className="relative w-fit h-fit flex items-center justify-center font-aust text-white text-xs">
+                                      {item}
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-                <div className="relative w-fit h-fit flex flex-col items-start justify-start gap-1">
+                <div className="flex flex-col items-start justify-start w-fit h-fit gap-1 relative">
                   <div className="relative w-fit h-fit text-sm break-words">
-                    {t("sty")}
+                    {t("add")}
                   </div>
-                  <div className="relative w-fit h-fit flex flex-col items-start justify-start gap-1">
-                    <div
-                      className={`relative h-10 flex flex-row justify-between p-2 w-60 max-w-[15rem] items-center justify-center border border-sol rounded-md cursor-pointer bg-offBlack gap-1`}
-                      onClick={() =>
-                        setCollectionSettings((prev) => ({
-                          ...prev,
-                          styleOpen: !prev.styleOpen,
-                        }))
-                      }
-                    >
-                      <div className="relative w-full whitespace-nowrap h-full flex items-center justify-start font-aust text-white text-xs overflow-x-scroll">
-                        {collectionDetails?.style}
-                      </div>
-                      <div className="relative w-4 h-3 flex items-center justify-center">
-                        <Image
-                          layout="fill"
-                          draggable={false}
-                          src={`${INFURA_GATEWAY}/ipfs/QmRKmMYJj7KAwf4BDGwrd51tKWoS8djnLGWT5XNdrJMztk`}
-                        />
-                      </div>
-                    </div>
-                    {collectionSettings?.styleOpen && (
-                      <div className="absolute top-10 bg-offBlack z-10 w-full max-w-[15rem] max-h-[6rem] h-fit flex border border-sol rounded-md overflow-y-scroll">
-                        <div className="relative w-full h-fit flex flex-col items-center justify-start">
-                          {filterConstants?.styles
-                            ?.map((item) => item?.[0])
-                            ?.map((item: string, index: number) => {
-                              return (
-                                <div
-                                  key={index}
-                                  className="relative w-full py-1 h-10 flex items-center justify-center text-white border-y border-sol font-aust cursor-pointer hover:opacity-80"
-                                  onClick={() => {
-                                    setCollectionSettings((prev) => ({
-                                      ...prev,
-                                      styleOpen: !prev.styleOpen,
-                                    }));
-
-                                    setCollectionDetails((prev) => ({
-                                      ...prev,
-                                      style: item,
-                                    }));
-                                  }}
-                                >
-                                  <div className="relative w-fit h-fit flex items-center justify-center font-aust text-white text-xs">
-                                    {item}
-                                  </div>
-                                </div>
-                              );
-                            })}
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                  <textarea
+                    value={collectionDetails?.extra || ""}
+                    onChange={(e) =>
+                      setCollectionDetails((prev) => ({
+                        ...prev,
+                        extra: e.target.value,
+                      }))
+                    }
+                    className="relative rounded-md p-1 bg-offBlack text-xs border border-sol h-40 w-60 sm:w-80 break-all"
+                    style={{
+                      resize: "none",
+                    }}
+                  ></textarea>
                 </div>
               </div>
             )

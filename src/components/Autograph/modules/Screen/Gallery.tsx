@@ -201,6 +201,7 @@ const Gallery: FunctionComponent<GalleryScreenProps> = ({
                         communities: "",
                         sex: "",
                         style: "",
+                        extra: "",
                       });
                       setCollectionSettings({
                         media: "static",

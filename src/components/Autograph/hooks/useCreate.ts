@@ -136,6 +136,7 @@ const useCreate = (
       printType: "",
       sex: "",
       style: "",
+      extra: ""
     }
   );
   const [creationLoading, setCreationLoading] = useState<boolean>(false);
@@ -482,6 +483,7 @@ const useCreate = (
         printType: "",
         sex: "",
         style: "",
+        extra: ""
       });
       setCollectionSettings({
         media: "static",
@@ -623,6 +625,7 @@ const useCreate = (
         other = {
           sex: collectionDetails?.sex,
           style: collectionDetails?.style,
+          extra: collectionDetails?.extra
         };
       }
 

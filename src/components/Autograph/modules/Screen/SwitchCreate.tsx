@@ -33,7 +33,7 @@ const SwitchCreate: FunctionComponent<SwitchCreateProps> = ({
   allCollections,
   collectionLoading,
   edit,
-  locale
+  locale,
 }): JSX.Element => {
   switch (type) {
     case "collection":
@@ -162,6 +162,8 @@ const SwitchCreate: FunctionComponent<SwitchCreateProps> = ({
                             },
                             sex: item?.collectionMetadata?.sex,
                             style: item?.collectionMetadata?.style,
+
+                            extra: item?.collectionMetadata?.extra,
                             access: item?.collectionMetadata?.access
                               ? item?.collectionMetadata?.access?.join(", ")
                               : "",

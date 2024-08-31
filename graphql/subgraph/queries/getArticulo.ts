@@ -22,6 +22,7 @@ const ARTICULO = gql`
         id
         gallery
         description
+        extra
       }
       collectionId
       amount
@@ -53,6 +54,7 @@ const UN_ARTICULO = gql`
         id
         gallery
         description
+        extra
       }
       collectionId
       amount

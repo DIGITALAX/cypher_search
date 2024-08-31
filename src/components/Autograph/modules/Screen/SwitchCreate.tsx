@@ -102,6 +102,7 @@ const SwitchCreate: FunctionComponent<SwitchCreateProps> = ({
                           setCreateCase("collection");
                           setCollectionSettings((prev) => ({
                             ...prev,
+                            imageIndex: 0,
                             origin:
                               itemTypeToString[
                                 numberToItemTypeMap[Number(item?.origin)]
@@ -126,16 +127,17 @@ const SwitchCreate: FunctionComponent<SwitchCreateProps> = ({
                             price: item?.prices?.[0],
                             otherPrices: item?.prices?.slice(1),
                             acceptedTokens: item?.acceptedTokens,
-                            images: item?.collectionMetadata?.images?.[0]
-                              ? [
-                                  {
-                                    media:
-                                      item?.collectionMetadata?.images?.[0],
-                                    type: item?.collectionMetadata
-                                      ?.mediaTypes?.[0],
-                                  },
-                                ]
-                              : [],
+                            images:
+                              item?.collectionMetadata?.images?.length > 0
+                                ? item?.collectionMetadata?.images?.map(
+                                    (_, i) => ({
+                                      media:
+                                        item?.collectionMetadata?.images?.[i],
+                                      type: item?.collectionMetadata
+                                        ?.mediaTypes?.[i],
+                                    })
+                                  )
+                                : [],
                             video: item?.collectionMetadata?.video,
                             audio: item?.collectionMetadata?.audio,
                             tags: item?.collectionMetadata?.tags
@@ -162,7 +164,6 @@ const SwitchCreate: FunctionComponent<SwitchCreateProps> = ({
                             },
                             sex: item?.collectionMetadata?.sex,
                             style: item?.collectionMetadata?.style,
-
                             extra: item?.collectionMetadata?.extra,
                             access: item?.collectionMetadata?.access
                               ? item?.collectionMetadata?.access?.join(", ")

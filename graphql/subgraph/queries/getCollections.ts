@@ -27,6 +27,7 @@ const COLLECTIONS = `
         id
         description
         audio
+        extra
         colors
         communities
         images
@@ -78,6 +79,7 @@ const COLLECTIONS_PAGINATED = `
         mediaTypes
         mediaCover
         id
+        extra
         description
         audio
         colors

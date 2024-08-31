@@ -21,6 +21,7 @@ const COLLECTION = `
         microbrand
         mediaTypes
         sex
+        extra
         onChromadin
         style
         mediaCover
@@ -74,6 +75,7 @@ export const COLLECTION_RANDOM = `query($origin: String!) {
       microbrand
       mediaTypes
       mediaCover
+      extra
       id
       description
       audio
@@ -152,6 +154,7 @@ const COLLECTION_TITLE = `
         mediaTypes
         mediaCover
         id
+        extra
         description
         audio
         colors

@@ -136,7 +136,7 @@ const useCreate = (
       printType: "",
       sex: "",
       style: "",
-      extra: ""
+      extra: "",
     }
   );
   const [creationLoading, setCreationLoading] = useState<boolean>(false);
@@ -200,7 +200,9 @@ const useCreate = (
         collectionDetails?.description?.trim() == ""
           ? " "
           : collectionDetails?.description,
-        collectionSettings?.media === "static" ? collectionDetails.images : [],
+        collectionSettings?.media === "static"
+          ? collectionDetails.images?.filter((i) => i.media?.trim() !== "")
+          : [],
         collectionSettings?.media === "video" ? [collectionDetails?.video] : [],
         collectionSettings?.media === "audio" ? [collectionDetails?.audio] : [],
         [],
@@ -483,7 +485,7 @@ const useCreate = (
         printType: "",
         sex: "",
         style: "",
-        extra: ""
+        extra: "",
       });
       setCollectionSettings({
         media: "static",
@@ -625,7 +627,7 @@ const useCreate = (
         other = {
           sex: collectionDetails?.sex,
           style: collectionDetails?.style,
-          extra: collectionDetails?.extra
+          extra: collectionDetails?.extra,
         };
       }
 

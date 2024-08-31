@@ -36,6 +36,7 @@ export const getAllCollections = async (
           prompt
           profileHandle
           sizes
+          extra
           microbrand
           mediaTypes
           mediaCover

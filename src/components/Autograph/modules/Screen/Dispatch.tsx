@@ -71,7 +71,7 @@ const Dispatch: FunctionComponent<DispatchProps> = ({
                     ? "text-sol"
                     : "text-white"
                 }`}
-              >{`${collectionDetails?.description?.length}/2000`}</div>
+              >{`${collectionDetails?.description?.length || 0}/2000`}</div>
             </div>
             <div className="flex flex-col items-start justify-start w-fit h-fit gap-1 relative">
               <div className="relative w-fit h-fit text-sm break-words">
@@ -96,7 +96,7 @@ const Dispatch: FunctionComponent<DispatchProps> = ({
                     ? "text-sol"
                     : "text-white"
                 }`}
-              >{`${collectionDetails?.prompt?.length}/2000`}</div>
+              >{`${collectionDetails?.prompt?.length || 0}/2000`}</div>
             </div>
           </div>
           <div className="relative flex flex-col items-start justify-start gap-4">

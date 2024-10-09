@@ -255,9 +255,12 @@ const useSearch = (
             lensConnected?.id
           );
 
-          publications = ([
-            ...(pubSearch?.data?.searchPublications?.items || []),
-          ] || []) as (Post | Comment | Mirror | Quote)[];
+          publications = (pubSearch?.data?.searchPublications?.items || []) as (
+            | Post
+            | Comment
+            | Mirror
+            | Quote
+          )[];
           pubCursor = pubSearch?.data?.searchPublications?.pageInfo?.next;
         }
       }
@@ -306,8 +309,12 @@ const useSearch = (
             lensConnected?.id
           );
 
-          publications = ([...(data?.data?.publications?.items || [])] ||
-            []) as (Post | Comment | Mirror | Quote)[];
+          publications = (data?.data?.publications?.items || []) as (
+            | Post
+            | Comment
+            | Mirror
+            | Quote
+          )[];
           pubProfileCursor = data?.data?.publications?.pageInfo?.next;
         }
       }

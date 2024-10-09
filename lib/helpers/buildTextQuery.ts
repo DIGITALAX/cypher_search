@@ -61,7 +61,7 @@ export default buildTextQuery;
 export const combineQueryObjects = (obj1: any, obj2: any) => {
   const obj1CollectionMetadataOrConditions = obj1.or[0].collectionMetadata_.or;
 
-  if (obj2.and[0].hasOwnProperty("collectionMetadata_")) {
+  if (obj2.and[0]?.hasOwnProperty("collectionMetadata_")) {
     obj2.and[0].collectionMetadata_.or = [
       ...obj2.and[0].collectionMetadata_.or,
       ...obj1CollectionMetadataOrConditions,

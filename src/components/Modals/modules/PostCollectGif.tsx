@@ -88,7 +88,7 @@ const PostCollectGif: FunctionComponent<PostCollectGifProps> = ({
                       <div
                         key={index}
                         onClick={() => {
-                          const newGifs = { ...gifs } || {};
+                          const newGifs = { ...gifs };
 
                           newGifs[id] = [
                             ...(newGifs?.[id!] || []),

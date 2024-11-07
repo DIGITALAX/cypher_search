@@ -14,6 +14,10 @@ const allowedOrigins = [
 
 const nextConfig = {
   reactStrictMode: true,
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
   images: {
     remotePatterns: [
       {
@@ -67,10 +71,6 @@ const nextConfig = {
 
     return config;
   },
-  presets: [
-    ["@babel/preset-env", { "useBuiltIns": "entry", "corejs": 3 }]
-
-  ],
 };
 
 module.exports = nextConfig;

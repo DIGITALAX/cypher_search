@@ -5,6 +5,8 @@ import { Provider } from "react-redux";
 import "@rainbow-me/rainbowkit/styles.css";
 import { XMTPProvider } from "@xmtp/react-sdk";
 import { init } from "@airstack/airstack-react";
+import 'core-js/es/map';
+import 'core-js/es/promise';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import moment from "moment";

@@ -68,8 +68,11 @@ const nextConfig = {
     return config;
   },
   presets: [
-    ["@babel/preset-env", { "useBuiltIns": "entry", "corejs": 3 }]
-  ]
+    [
+      "@babel/preset-env",
+      { targets: "> 0.25%, not dead", useBuiltIns: "entry", corejs: 3 },
+    ],
+  ],
 };
 
 module.exports = nextConfig;

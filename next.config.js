@@ -68,14 +68,8 @@ const nextConfig = {
     return config;
   },
   presets: [
-    [
-      "@babel/preset-env",
-      {
-        targets: "> 0.25%, not dead",
-        useBuiltIns: "entry",
-        corejs: { version: 3, proposals: true },
-      },
-    ],
+    ["@babel/preset-env", { "useBuiltIns": "entry", "corejs": 3 }]
+
   ],
 };
 

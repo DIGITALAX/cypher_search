@@ -25,7 +25,7 @@
     "@reduxjs/toolkit": "1.9.7",
     "@xmtp/react-sdk": "4.0.0",
     "@xmtp/xmtp-js": "11.3.5",
-    "core-js": "3.39.0",
+    "core-js": "^3.39.0",
     "dotenv": "16.3.1",
     "ethers": "6.8.1",
     "ethers-v5": "npm:ethers@5.7.2",

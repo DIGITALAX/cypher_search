@@ -68,9 +68,13 @@ const nextConfig = {
       include: [path.resolve(__dirname, "node_modules/kinora-sdk")],
       use: [options.defaultLoaders.babel, { loader: "ts-loader" }],
     });
-
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'core-js/modules/es.array.map': 'core-js/es/array/map'
+    };
     return config;
   },
+
 };
 
 module.exports = nextConfig;

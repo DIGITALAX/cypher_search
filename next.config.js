@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const path = require("path");
-
+const webpack = require("webpack");
 const allowedOrigins = [
   "https://api-v2-mumbai.lens.dev/",
   "https://api-v2.lens.dev/",
@@ -68,13 +68,25 @@ const nextConfig = {
       include: [path.resolve(__dirname, "node_modules/kinora-sdk")],
       use: [options.defaultLoaders.babel, { loader: "ts-loader" }],
     });
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'core-js/modules/es.array.map': 'core-js/es/array/map'
+
+    config.resolve.fallback = {
+      fs: false,
+      net: false,
+      tls: false,
+      buffer: require.resolve("buffer/"),
+      "core-js/modules/es.array.map.js": require.resolve(
+        "core-js/es/array/map"
+      ),
     };
+
+    config.plugins.push(
+      new webpack.ProvidePlugin({
+        Buffer: ["buffer", "Buffer"],
+      })
+    );
+
     return config;
   },
-
 };
 
 module.exports = nextConfig;

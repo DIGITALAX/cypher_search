@@ -61,7 +61,6 @@
     "viem": "1.20.0",
     "wagmi": "1.4.12",
     "wavesurfer.js": "^7.4.5",
-    "@netlify/plugin-nextjs": "^5.8.1",
     "@types/json-stable-stringify": "^1.0.36",
     "@types/leaflet": "^1.9.7",
     "@types/lodash.merge": "^4.6.8",

@@ -6,4 +6,4 @@
   NODE_VERSION = "18"
 
 [[plugins]]
-  package = "@opennext/netlify"
+  package = "@netlify/plugin-nextjs"

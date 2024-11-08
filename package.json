@@ -11,9 +11,6 @@
   "engines": {
     "node": "18.x"
   },
-  "resolutions": {
-    "@livepeer/react/core-js": "^3.39.0"
-  },
   "dependencies": {
     "@airstack/airstack-react": "^0.5.7",
     "@apollo/client": "^3.8.5",
@@ -28,7 +25,6 @@
     "@reduxjs/toolkit": "^1.9.7",
     "@xmtp/react-sdk": "4.0.0",
     "@xmtp/xmtp-js": "11.3.5",
-    "core-js": "^3.39.0",
     "dotenv": "^16.3.1",
     "ethers": "^6.8.1",
     "ethers-v5": "npm:ethers@^5.7.2",
@@ -37,7 +33,7 @@
     "http-proxy-middleware": "^2.0.6",
     "ipfs-http-client": "60.0.1",
     "json-stable-stringify": "^1.1.0",
-    "kinora-sdk": "1.0.4",
+    "kinora-sdk": "^1.0.65",
     "leaflet": "^1.9.4",
     "lodash.merge": "^4.6.2",
     "masonic": "^3.7.0",

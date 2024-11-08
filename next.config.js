@@ -69,15 +69,15 @@ const nextConfig = {
       use: [options.defaultLoaders.babel, { loader: "ts-loader" }],
     });
 
-    config.resolve.fallback = {
-      fs: false,
-      net: false,
-      tls: false,
-      buffer: require.resolve("buffer/"),
-      "core-js/modules/es.array.map.js": require.resolve(
-        "core-js/es/array/map"
-      ),
-    };
+    // config.resolve.fallback = {
+    //   fs: false,
+    //   net: false,
+    //   tls: false,
+    //   buffer: require.resolve("buffer/"),
+    //   "core-js/modules/es.array.map.js": require.resolve(
+    //     "core-js/es/array/map"
+    //   ),
+    // };
 
     config.plugins.push(
       new webpack.ProvidePlugin({

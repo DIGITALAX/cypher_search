@@ -37,7 +37,7 @@ const ClaimProfile: FunctionComponent<ClaimProfileProps> = ({
               />
             </div>
             <div
-              onClick={() => window.open(`https://claim.lens.xyz/`)}
+              onClick={() => window.open(`https://onboarding.lens.xyz/`)}
               className="relative border border-white w-32 h-8 cursor-pointer flex items-center justify-center active:scale-95 py-1 rounded-md text-xs font-bit text-white"
             >
               <div className="relative w-fit h-fit flex items-center justify-center">
